@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Closure</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <h2>
+      Q1 => Give the output
+      <pre>
+            function counter(){
+                var counter = 0;  
+            
+                function IncreaseCounter() {
+                    return counter += 1; 
+                }
+                return IncreaseCounter; 
+            }
+            
+            var counter = counter();  
+            
+            alert(counter());  
+            alert(counter());  
+            alert(counter());  
+            alert(counter());              
+        </pre
+      >
+      Ans : The alerts will display "1", "2", "3", and "4" sequentially, as the
+      counter is incremented with each call to the closure.
+      <br />
+
+      <br />
+      Q2 => GIve the output.
+      <pre>
+            "let count = 0;
+            (function () {
+            if (count === 0) {
+            let count = 1;
+            console.log(count); // What is logged?
+            }
+            console.log(count); // What is logged?
+            })(); 
+        </pre>
+        Ans : The output will be 1 and 0. <br> The code declares two separate variables named count with different scopes: one is declared globally with the value 0,
+         and another is declared inside an IIFE with the value 1. When logging count inside the IIFE, it outputs 1,
+         but outside the IIFE (in the global scope), it outputs 0.
+         <br/>
+
+         <br/>
+         Q3=>Give the output
+         <pre>
+            for (var i = 0; i < 3; i++) {
+                setTimeout(function log() {
+                  console.log(i); // What is logged?
+                }, 1000);
+              } 
+         </pre>
+         Ans : Output will be: 3 3 3;<br/>
+
+         <br/>
+         Q4=> Write a code to calculate area of a rectangle using inner function. In this case outer function should accept parameter length and inner function should accept parameter breadth.
+         <pre>
+            Ans : function calculateRectangleArea(length) {
+                function calculateArea(breadth) {
+                    return length * breadth;
+                }
+            
+                return calculateArea;
+            }
+         </pre>
+         <br/>
+
+         <br/>
+         Q5 => Take a variable in outer function and create an inner function to increase the counter every time it is called
+         <pre>
+            Ans : function counterFunction() {
+                var counter = 0; 
+            
+                function increaseCounter() {
+                    counter++;  
+                    console.log("Counter:", counter);
+                }
+            
+                return increaseCounter; 
+            }
+            
+            var increaseCounter = counterFunction(); 
+            
+            increaseCounter();  
+            increaseCounter();  
+            increaseCounter();              
+         </pre>
+         <br/>
+
+         <br/>
+         Q6 => GIve the output.
+         <pre>
+            var a = 12;
+            (function () {
+               alert(a);
+            })();
+         </pre>
+         Ans : The output will be 12. Inside the IIFE, you're calling alert(a). Since there is no variable named a defined in the local scope of the IIFE,
+          JavaScript looks up the scope chain and finds the global variable a with a value of 12.
+          <br/>
+
+          <br/>
+          Q7 =>Give the output.
+          <pre>
+            var a = 10;
+            var x = (function () {
+              var a = 12;
+              return function () {
+                alert(a);
+              };
+            })();
+            x();
+          </pre>
+          Ans : The output will be 12. The inner function is immediately invoked since the outer anonymous function was invoked as well.
+           This inner function is now a closure that still has access to the local variable a from the outer scope.
+           <br/>
+
+           <br/>
+           Q8 =>Give the output.
+           <pre>
+            var globalVar = "xyz";
+
+            (function outerFunc(outerArg) {
+                var outerVar = 'a';
+                
+                (function innerFunc(innerArg) {
+                    var innerVar = 'b';
+                
+                    console.log(
+                        "outerArg = " + outerArg + "\n" +
+                        "innerArg = " + innerArg + "\n" +
+                        "outerVar = " + outerVar + "\n" +
+                        "innerVar = " + innerVar + "\n" +
+                        "globalVar = " + globalVar);
+                
+                })(456);
+            })(123);
+          </pre>
+          <pre>
+            Ans : outerArg = 123<br/>
+            innerArg = 456<br/>
+            outerVar = a<br/>
+            innerVar = b<br/>
+            globalVar = xyz<br/>
+         </pre>
+    </h2>
+  </body>
+</html>
